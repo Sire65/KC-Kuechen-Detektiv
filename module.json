@@ -1,7 +1,7 @@
 {
   "id": "kc-kitchen-detective",
   "name": "KC FUTURA – Küchen-Detektiv",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "entry": "index.html",
   "sceneCatalog": "scenes.js",
   "sceneCount": 23,
@@ -16,8 +16,12 @@
     "missing-image-fallback",
     "approved-asset-gate",
     "automatic-scene-qa",
+    "architecture-qa",
     "spot-difference-6-8-10",
-    "futura-result-contract"
+    "structured-session-result",
+    "per-case-attempts-hints-duration",
+    "performance-percent-cap-100",
+    "futura-result-contract-1.1"
   ],
   "modes": ["thief", "wrong_place", "missing", "liar", "logic", "combo", "spot_difference"],
   "difficulties": {
@@ -37,18 +41,27 @@
     "hint2AdditionalPenalty": 40,
     "maxTimeBonus": 30,
     "fiveCorrectStreakBonus": 50,
-    "differenceCompletionBonus": {"6":35,"8":50,"10":70}
+    "differenceCompletionBonus": {"6":35,"8":50,"10":70},
+    "performancePercentCappedAt": 100
   },
   "assetStyle": "near-photorealistic-professional-kitchen",
   "assetApprovalManifest": "image-approvals.js",
+  "releaseStatus": {
+    "technical": "release-ready",
+    "visualAssets": "approval-gated",
+    "approvedScenesArePlayableOnly": true
+  },
   "qa": {
     "command": "npm test",
-    "workflow": ".github/workflows/validate-game.yml"
+    "workflow": ".github/workflows/validate-game.yml",
+    "architectureScript": "scripts/validate-detective-architecture.js"
   },
   "futuraMigration": {
     "standaloneRepository": true,
     "safeToEmbedByIframe": true,
     "resultContract": "FUTURA_RESULT_CONTRACT.md",
-    "scoreAdapter": "window.KCFuturaGameBridge"
+    "contractVersion": "1.1",
+    "scoreAdapter": "window.KCFuturaGameBridge",
+    "postMessageType": "KC_FUTURA_GAME_RESULT"
   }
 }
