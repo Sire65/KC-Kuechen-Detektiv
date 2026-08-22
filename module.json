@@ -1,11 +1,20 @@
 {
   "id": "kc-kitchen-detective",
   "name": "KC FUTURA – Küchen-Detektiv",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "entry": "index.html",
   "sceneCatalog": "scenes.js",
   "sceneCount": 23,
   "expandable": true,
+  "features": [
+    "mode-filter",
+    "difficulty-filter",
+    "random-order",
+    "saved-best-score",
+    "played-case-statistics",
+    "progress-indicator",
+    "missing-image-fallback"
+  ],
   "modes": ["thief", "wrong_place", "missing", "liar", "logic", "combo", "spot_difference"],
   "difficulties": {
     "easy": 100,
