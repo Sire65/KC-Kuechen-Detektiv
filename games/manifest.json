@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "platform": "KC FUTURA Spielewelt",
+  "bridge": "window.KCFuturaGameBridge",
+  "games": [
+    {
+      "id": "kitchen-detective",
+      "name": "Küchen-Detektiv",
+      "entry": "../../index.html",
+      "category": "Beobachtung & Logik",
+      "scoreCompatible": true
+    },
+    {
+      "id": "kitchen-crossword",
+      "name": "Küchen-Kreuzworträtsel",
+      "entry": "kreuzwortraetsel/index.html",
+      "category": "Fachwissen & Begriffe",
+      "scoreCompatible": true
+    }
+  ]
+}
