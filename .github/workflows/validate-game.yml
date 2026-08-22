@@ -1,4 +1,4 @@
-name: Validate KC Küchen-Detektiv
+name: Validate KC Spielewelt
 
 on:
   push:
@@ -11,6 +11,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
@@ -18,5 +19,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Fall- und Asset-QA ausführen
+      - name: Syntax, Regression und Architektur-TÜV ausführen
         run: npm test
