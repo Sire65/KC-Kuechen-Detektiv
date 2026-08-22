@@ -2,6 +2,7 @@
   const $=s=>document.querySelector(s);
   const KEY='kc-kitchen-crossword-daily-v1';
   let dailyActive=false;
+  let startingDaily=false;
   let currentDate='';
 
   function dateKey(d=new Date()){
@@ -34,9 +35,9 @@
   function startDaily(){
     currentDate=dateKey();const p=plan(currentDate);
     $('#difficulty').value=p.difficulty;$('#category').value=p.category;$('#variant').value=p.variant;
-    dailyActive=true;window.KC_CROSSWORD_DAILY={active:true,date:currentDate,seed:p.seed};
+    dailyActive=true;startingDaily=true;window.KC_CROSSWORD_DAILY={active:true,date:currentDate,seed:p.seed};
     const original=Math.random;Math.random=seeded(p.seed);
-    try{$('#startBtn').click();}finally{Math.random=original;}
+    try{$('#startBtn').click();}finally{Math.random=original;startingDaily=false;}
     const badge=document.getElementById('dailyGameBadge');if(badge){badge.hidden=false;badge.textContent=`Tagesrätsel · ${currentDate}`;}
   }
   function onComplete(text){
@@ -46,11 +47,12 @@
     const detail={gameId:'kitchen-crossword',mode:'daily',dailyDate:currentDate,score,bestScore:row.bestScore,completed:true};
     try{window.dispatchEvent(new CustomEvent('kc-futura-daily-result',{detail}));if(window.parent&&window.parent!==window)window.parent.postMessage({type:'KC_FUTURA_DAILY_RESULT',payload:detail},'*');}catch(e){}
   }
-  function leaveDaily(){dailyActive=false;window.KC_CROSSWORD_DAILY={active:false};const badge=$('#dailyGameBadge');if(badge)badge.hidden=true;}
+  function leaveDaily(){dailyActive=false;startingDaily=false;window.KC_CROSSWORD_DAILY={active:false};const badge=$('#dailyGameBadge');if(badge)badge.hidden=true;}
 
   $('#dailyPuzzleBtn')?.addEventListener('click',startDaily);
-  $('#startBtn')?.addEventListener('click',e=>{if(!dailyActive)leaveDaily();});
+  $('#startBtn')?.addEventListener('click',()=>{if(!startingDaily)leaveDaily();});
   $('#choosePuzzleBtn')?.addEventListener('click',leaveDaily);
+  $('#newPuzzleBtn')?.addEventListener('click',leaveDaily,true);
   const feedback=$('#feedback');if(feedback)new MutationObserver(()=>onComplete(feedback.textContent||'')).observe(feedback,{childList:true,subtree:true,characterData:true});
   render();
 })();
