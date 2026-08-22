@@ -5,12 +5,14 @@
   let active=null;
   let coordMap=new Map();
   let inputEntries=new Map();
+  let rebuildTimer=null;
 
   function coordOf(input){
     const m=(input.getAttribute('aria-label')||'').match(/(\d+)\D+(\d+)/);
     return m?{x:Number(m[1]),y:Number(m[2])}:null;
   }
   function k(x,y){return x+','+y;}
+  function scheduleRebuild(){clearTimeout(rebuildTimer);rebuildTimer=setTimeout(rebuild,20);}
 
   function rebuild(){
     const grid=$('#grid');
@@ -31,18 +33,25 @@
         const entry={dir,li,word,inputs:path,number};entries.push(entry);
         path.forEach(input=>{if(!inputEntries.has(input))inputEntries.set(input,[]);inputEntries.get(input).push(entry);});
         li.tabIndex=0;li.setAttribute('role','button');li.setAttribute('aria-label',`${number} ${dir==='across'?'waagerecht':'senkrecht'}: ${clue}`);
-        li.addEventListener('click',()=>activate(entry,true));
-        li.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(entry,true);}});
+        if(li.dataset.kcNavBound!=='1'){
+          li.dataset.kcNavBound='1';
+          li.addEventListener('click',()=>activate(findEntryForClue(li),true));
+          li.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(findEntryForClue(li),true);}});
+        }
       });
     });
 
     inputs.forEach(input=>{
+      if(input.dataset.kcNavBound==='1')return;
+      input.dataset.kcNavBound='1';
       input.addEventListener('focus',()=>selectForInput(input,false));
       input.addEventListener('click',()=>selectForInput(input,true));
       input.addEventListener('input',()=>autoAdvance(input));
       input.addEventListener('keydown',e=>handleKey(e,input));
     });
   }
+
+  function findEntryForClue(li){return entries.find(e=>e.li===li)||null;}
 
   function findPath(word,dir,number){
     const candidates=[];
@@ -102,7 +111,7 @@
   }
 
   const grid=$('#grid');
-  if(grid)new MutationObserver(()=>setTimeout(rebuild,0)).observe(grid,{childList:true});
-  document.addEventListener('DOMContentLoaded',rebuild);
-  setTimeout(rebuild,0);
+  if(grid)new MutationObserver(scheduleRebuild).observe(grid,{childList:true});
+  document.addEventListener('DOMContentLoaded',scheduleRebuild);
+  scheduleRebuild();
 })();
