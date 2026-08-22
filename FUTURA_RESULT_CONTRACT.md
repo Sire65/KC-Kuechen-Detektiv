@@ -1,91 +1,109 @@
 # KC Küchen-Detektiv – Ergebnisvertrag für KC FUTURA
 
-Dieser Vertrag definiert die Übergabe eines abgeschlossenen Spiels an die spätere **KC FUTURA Spielewelt**. Die Schnittstelle bleibt bewusst stabil, damit der Küchen-Detektiv eigenständig entwickelt und später ohne Umbau eingebettet werden kann.
+Dieser Vertrag definiert die Übergabe einer abgeschlossenen Sitzung an die **KC FUTURA Spielewelt**. Das Spiel bleibt auch ohne FUTURA-Host vollständig standalone lauffähig.
 
-## Bridge
+## Vertrag 1.1
 
-Die Host-Anwendung stellt optional `window.KCFuturaGameBridge` bereit. Das Spiel muss auch ohne Bridge vollständig lauffähig bleiben.
-
-Vorgesehener Aufruf:
-
-```js
-window.KCFuturaGameBridge?.submitGameResult?.(result)
-```
-
-## Ergebnisobjekt
+Das Spiel erzeugt nach Abschluss genau ein Ergebnisobjekt:
 
 ```js
 {
-  schemaVersion: '1.0',
-  gameId: 'kc-kitchen-detective',
-  gameVersion: '0.3.x',
-  player: {
-    id: null,
-    displayName: null
+  contractVersion: '1.1',
+  event: 'game.completed',
+  game: {
+    id: 'kc-kitchen-detective',
+    name: 'KC FUTURA – Küchen-Detektiv',
+    version: '0.5.0'
   },
-  session: {
-    startedAt: 'ISO-8601',
-    finishedAt: 'ISO-8601',
-    durationSeconds: 0,
-    selectedMode: 'all|thief|wrong_place|missing|liar|logic|combo|spot_difference',
-    selectedDifficulty: 'all|easy|medium|hard|master',
-    order: 'normal|random'
+  player: {
+    playerId: null,
+    memberId: null,
+    displayName: null
   },
   result: {
     score: 0,
     bestScore: 0,
-    rank: 'Küchendetektiv|Spürnase|Kücheninspektor|Meisterdetektiv',
+    performancePercent: 0,
+    rank: 'Küchendetektiv',
     completedCases: 0,
-    totalCasesInSession: 0,
-    hintsUsed: 0,
-    wrongAttempts: 0,
-    perfectCases: 0
+    selectedCases: 0,
+    durationSeconds: 0,
+    cases: [
+      {
+        id: 'KD-001',
+        title: 'Das verschwundene Steak',
+        difficulty: 'easy',
+        mode: 'thief',
+        earned: 0,
+        attempts: 1,
+        hints: 0,
+        durationSeconds: 0,
+        correct: true
+      }
+    ],
+    completed: true
   },
-  cases: [
-    {
-      id: 'KD-001',
-      mode: 'thief',
-      difficulty: 'easy',
-      earned: 0,
-      attempts: 1,
-      hints: 0,
-      durationSeconds: 0
-    }
-  ],
-  achievements: []
+  context: {
+    embedded: false,
+    completedAt: 'ISO-8601'
+  }
 }
 ```
 
 ## Spielerübernahme
 
-Falls FUTURA einen angemeldeten Spieler bereitstellt, kann der Host vor Spielstart setzen:
+Der Host kann vor Spielstart optional einen Spieler bereitstellen:
 
 ```js
-window.KCFuturaGameContext = {
-  playerId: '...',
+window.KCFuturaPlayer = {
+  id: '...',
+  memberId: '...',
   displayName: '...'
-}
+};
 ```
 
-Ohne diesen Kontext bleibt `player.id` leer; das Standalone-Spiel verwendet keine erfundene Benutzer-ID.
+Alternativ wird `window.KCFUTURA_PLAYER` akzeptiert. Ohne Host-Kontext werden keine erfundenen IDs erzeugt.
+
+## Ergebniswege
+
+Der Adapter unterstützt nacheinander folgende Host-Schnittstellen:
+
+```js
+window.KCFuturaGameBridge(payload)
+window.KCFuturaGameBridge.submitResult(payload)
+window.KCFuturaGameBridge.onGameResult(payload)
+```
+
+Zusätzlich werden ausgelöst:
+
+- Browser-Event `kc-futura-game-result`
+- `postMessage({ type: 'KC_FUTURA_GAME_RESULT', payload })` an den Parent-Frame
+- lokaler Fallback `localStorage['kc-kitchen-detective-last-result']`
+- `window.KC_KITCHEN_DETECTIVE_LAST_RESULT`
+
+## Interner Abschluss
+
+Die Engine erzeugt zuerst `window.KC_KITCHEN_DETECTIVE_SESSION_RESULT` und sendet das Event:
+
+```js
+window.dispatchEvent(new CustomEvent(
+  'kc-kitchen-detective-session-complete',
+  { detail: sessionResult }
+));
+```
+
+Der FUTURA-Adapter verwendet diese strukturierten Daten direkt. Das Auslesen der Abschlussanzeige bleibt nur als Rückfallebene bestehen.
 
 ## Regeln
 
-- Punkte werden nur einmal pro abgeschlossener Sitzung an FUTURA übergeben.
-- Einzelne Fallresultate bleiben Bestandteil des Ergebnisobjekts, damit spätere Statistiken möglich sind.
-- Hinweise, Fehlversuche und Schwierigkeitsgrad werden mit übertragen.
-- Die Bridge darf niemals Voraussetzung für das lokale Spielen sein.
-- Bei nicht verfügbarer Bridge wird das Ergebnis weiterhin lokal gespeichert.
+- Ein Sitzungsabschluss wird nur einmal an FUTURA übertragen.
+- `performancePercent` ist auf maximal 100 % begrenzt.
+- Die Maximalpunktzahl berücksichtigt Grundwert, bestmöglichen Versuch/Komplettbonus, Zeitbonus und mögliche Serienboni.
+- Einzelresultate enthalten Versuche, Hinweise, Dauer, Modus, Schwierigkeit und Punkte.
+- Die Bridge ist niemals Voraussetzung für das lokale Spielen.
 - Keine geheimen Schlüssel, Tokens oder Datenbankzugänge gehören in das Spielmodul.
+- Nicht bildlich freigegebene Fälle werden durch `image-approvals.js` nicht spielbar gemacht.
 
-## Geplante Erfolge
+## Versionsregel
 
-- `first_case` – erster Fall gelöst
-- `five_clean` – fünf Fälle ohne Hinweis gelöst
-- `no_mistakes` – Sitzung ohne Fehlversuch
-- `spot_6` – KD-021 vollständig gelöst
-- `spot_8` – KD-022 vollständig gelöst
-- `spot_10` – KD-023 vollständig gelöst
-- `master_detective` – Meisterdetektiv-Rang erreicht
-
-Damit können Küchen-Detektiv, Kreuzworträtsel und spätere Spiele denselben Ergebnisstandard der KC FUTURA Spielewelt verwenden.
+`module.json`, `engine.js` und `futura-adapter.js` müssen dieselbe Spielversion führen. Die automatische Architektur-QA prüft diese Konsistenz.
