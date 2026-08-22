@@ -1,7 +1,7 @@
 {
   "id": "kitchen-crossword",
   "name": "KC FUTURA – Küchen-Kreuzworträtsel",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "entry": "games/kreuzwortraetsel/index.html",
   "expandable": true,
   "categories": ["food", "utensil", "technique", "all"],
@@ -26,6 +26,12 @@
     "touch-optimized-grid",
     "mobile-scroll-grid",
     "landscape-compact-mode",
+    "auto-advance-input",
+    "backspace-word-navigation",
+    "arrow-key-grid-navigation",
+    "clickable-clues",
+    "active-word-highlighting",
+    "crossing-direction-toggle",
     "automatic-word-qa",
     "futura-result-bridge"
   ],
