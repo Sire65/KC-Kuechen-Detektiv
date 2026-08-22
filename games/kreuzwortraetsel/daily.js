@@ -1,8 +1,10 @@
 (function(){
   const $=s=>document.querySelector(s);
   const KEY='kc-kitchen-crossword-daily-v1';
+  const GAME_VERSION='1.4.0';
   let dailyActive=false;
   let startingDaily=false;
+  let completionRecorded=false;
   let currentDate='';
 
   function dateKey(d=new Date()){
@@ -35,19 +37,20 @@
   function startDaily(){
     currentDate=dateKey();const p=plan(currentDate);
     $('#difficulty').value=p.difficulty;$('#category').value=p.category;$('#variant').value=p.variant;
-    dailyActive=true;startingDaily=true;window.KC_CROSSWORD_DAILY={active:true,date:currentDate,seed:p.seed};
+    completionRecorded=false;dailyActive=true;startingDaily=true;window.KC_CROSSWORD_DAILY={active:true,date:currentDate,seed:p.seed};
     const original=Math.random;Math.random=seeded(p.seed);
     try{$('#startBtn').click();}finally{Math.random=original;startingDaily=false;}
     const badge=document.getElementById('dailyGameBadge');if(badge){badge.hidden=false;badge.textContent=`Tagesrätsel · ${currentDate}`;}
   }
   function onComplete(text){
-    if(!dailyActive||!text.includes('Rätsel abgeschlossen!'))return;
-    const score=Number($('#score')?.textContent||0),store=load(),row=store[currentDate]||{bestScore:0,plays:0};
-    row.completed=true;row.plays=(row.plays||0)+1;row.bestScore=Math.max(row.bestScore||0,score);row.lastScore=score;row.completedAt=new Date().toISOString();store[currentDate]=row;save(store);render();
-    const detail={gameId:'kitchen-crossword',mode:'daily',dailyDate:currentDate,score,bestScore:row.bestScore,completed:true};
+    if(!dailyActive||completionRecorded||!text.includes('Rätsel abgeschlossen!'))return;
+    completionRecorded=true;
+    const p=plan(currentDate),score=Number($('#score')?.textContent||0),store=load(),row=store[currentDate]||{bestScore:0,plays:0};
+    row.completed=true;row.plays=(row.plays||0)+1;row.bestScore=Math.max(row.bestScore||0,score);row.lastScore=score;row.difficulty=p.difficulty;row.category=p.category;row.variant=p.variant;row.completedAt=new Date().toISOString();store[currentDate]=row;save(store);render();
+    const detail={gameId:'kitchen-crossword',gameVersion:GAME_VERSION,mode:'daily',dailyDate:currentDate,difficulty:p.difficulty,category:p.category,variant:p.variant,score,bestScore:row.bestScore,completed:true};
     try{window.dispatchEvent(new CustomEvent('kc-futura-daily-result',{detail}));if(window.parent&&window.parent!==window)window.parent.postMessage({type:'KC_FUTURA_DAILY_RESULT',payload:detail},'*');}catch(e){}
   }
-  function leaveDaily(){dailyActive=false;startingDaily=false;window.KC_CROSSWORD_DAILY={active:false};const badge=$('#dailyGameBadge');if(badge)badge.hidden=true;}
+  function leaveDaily(){dailyActive=false;startingDaily=false;completionRecorded=false;window.KC_CROSSWORD_DAILY={active:false};const badge=$('#dailyGameBadge');if(badge)badge.hidden=true;}
 
   $('#dailyPuzzleBtn')?.addEventListener('click',startDaily);
   $('#startBtn')?.addEventListener('click',()=>{if(!startingDaily)leaveDaily();});
