@@ -1,6 +1,7 @@
 (function(){
   const WORDS=window.KC_CROSSWORD_WORDS||[];
   const $=s=>document.querySelector(s);
+  const GAME_VERSION='1.4.0';
   const LEVELS={
     easy:{label:'Leicht',count:8,base:120},
     medium:{label:'Mittel',count:11,base:200},
@@ -148,7 +149,7 @@
   }
 
   function submitResult(level,seconds){
-    const payload={gameId:'kitchen-crossword',gameVersion:'1.1.1',score:state.score,difficulty:level,variant:$('#variant').value,category:$('#category').value,completed:true,terms:state.entries.length,hints:state.hints,checks:state.checks,solutionBonus:state.solutionBonus,durationSeconds:Math.round(seconds),completedAt:new Date().toISOString()};
+    const payload={gameId:'kitchen-crossword',gameVersion:GAME_VERSION,score:state.score,difficulty:level,variant:$('#variant').value,category:$('#category').value,completed:true,terms:state.entries.length,hints:state.hints,checks:state.checks,solutionBonus:state.solutionBonus,durationSeconds:Math.round(seconds),completedAt:new Date().toISOString()};
     try{const bridge=window.KCFuturaGameBridge||(window.parent&&window.parent.KCFuturaGameBridge);if(bridge&&typeof bridge.submitResult==='function')bridge.submitResult(payload);if(window.parent&&window.parent!==window)window.parent.postMessage({type:'KC_FUTURA_GAME_RESULT',payload},'*');}catch(e){}
   }
   function back(){if(state.finished||confirm('Aktuelles Rätsel verlassen?')){$('#game').hidden=true;$('#start').hidden=false;updateStats();}}
