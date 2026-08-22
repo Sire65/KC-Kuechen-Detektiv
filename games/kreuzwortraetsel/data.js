@@ -13,7 +13,7 @@ window.KC_CROSSWORD_WORDS = [
   {word:'REIS',category:'food',level:'easy',clue:'Kornbeilage, Grundlage unter anderem für Risotto.'},
   {word:'EI',category:'food',level:'easy',clue:'Zutat zum Binden, Backen, Panieren oder Frühstücken.'},
 
-  // Lebensmittel – mittel/schwer
+  // Lebensmittel – mittel/schwer/Meister
   {word:'SELLERIE',category:'food',level:'medium',clue:'Aromatisches Gemüse und klassischer Bestandteil von Suppengrün.'},
   {word:'KNOBLAUCH',category:'food',level:'medium',clue:'Kräftig aromatische Knolle mit einzelnen Zehen.'},
   {word:'KARTOFFEL',category:'food',level:'medium',clue:'Stärkehaltige Knolle für Püree, Pommes und viele Beilagen.'},
@@ -22,6 +22,9 @@ window.KC_CROSSWORD_WORDS = [
   {word:'MUSKAT',category:'food',level:'medium',clue:'Gewürz, das besonders gut zu Kartoffelpüree und Spinat passt.'},
   {word:'SAFRAN',category:'food',level:'hard',clue:'Sehr kostbares Gewürz aus Blütennarben, färbt Speisen gelb.'},
   {word:'ESTRAGON',category:'food',level:'hard',clue:'Kraut mit anisartigem Aroma, klassisch in der Sauce Béarnaise.'},
+  {word:'KARDAMOM',category:'food',level:'master',clue:'Intensiv aromatisches Kapselgewürz, häufig in süßen und orientalischen Speisen.'},
+  {word:'KALBSBRIES',category:'food',level:'master',clue:'Feines Innereienprodukt aus der Thymusdrüse des Kalbes.'},
+  {word:'TRÜFFEL',category:'food',level:'master',clue:'Unterirdisch wachsender Edelpilz mit sehr intensivem Aroma.'},
 
   // Utensilien – leicht
   {word:'KELLE',category:'utensil',level:'easy',clue:'Werkzeug zum Portionieren von Suppen und Saucen.'},
@@ -33,7 +36,7 @@ window.KC_CROSSWORD_WORDS = [
   {word:'ZANGE',category:'utensil',level:'easy',clue:'Greifwerkzeug zum Wenden und Portionieren.'},
   {word:'BRETT',category:'utensil',level:'easy',clue:'Arbeitsunterlage zum Schneiden.'},
 
-  // Utensilien – mittel/schwer
+  // Utensilien – mittel/schwer/Meister
   {word:'SCHNEEBESEN',category:'utensil',level:'medium',clue:'Zum Aufschlagen und Vermengen von Flüssigkeiten.'},
   {word:'SCHAUMKELLE',category:'utensil',level:'medium',clue:'Gelochtes Werkzeug zum Herausheben aus Flüssigkeiten.'},
   {word:'PFANNENWENDER',category:'utensil',level:'medium',clue:'Flaches Werkzeug zum Wenden von Bratgut.'},
@@ -42,6 +45,9 @@ window.KC_CROSSWORD_WORDS = [
   {word:'CHINOIS',category:'utensil',level:'hard',clue:'Feines, konisches Küchensieb aus Metall.'},
   {word:'SAUTEUSE',category:'utensil',level:'hard',clue:'Kochgeschirr mit hohem, meist schrägem Rand für Saucen und Schwenkgerichte.'},
   {word:'MANDOLINE',category:'utensil',level:'hard',clue:'Küchengerät zum sehr gleichmäßigen Hobeln von Gemüse.'},
+  {word:'ETAMIN',category:'utensil',level:'master',clue:'Sehr feines Passiertuch zum Klären oder Filtern.'},
+  {word:'SALAMANDER',category:'utensil',level:'master',clue:'Professionelles Oberhitze-Gerät zum Gratinieren und Überbacken.'},
+  {word:'THERMOMIXER',category:'utensil',level:'master',clue:'Küchengerät, das Mixen, Zerkleinern und kontrolliertes Erhitzen kombiniert.'},
 
   // Fachbegriffe – mittel
   {word:'PASSIEREN',category:'technique',level:'medium',clue:'Eine Masse durch Sieb oder Tuch streichen.'},
@@ -65,5 +71,15 @@ window.KC_CROSSWORD_WORDS = [
   {word:'TOURNIEREN',category:'technique',level:'hard',clue:'Gemüse in eine gleichmäßige, dekorative Form schneiden.'},
   {word:'EMULGIEREN',category:'technique',level:'hard',clue:'Zwei normalerweise nicht mischbare Flüssigkeiten fein miteinander verbinden.'},
   {word:'FARCIEREN',category:'technique',level:'hard',clue:'Lebensmittel mit einer Farce oder anderen Masse füllen.'},
-  {word:'KARAMELLISIEREN',category:'technique',level:'hard',clue:'Zucker durch Erhitzen bräunen und typische Röstaromen entwickeln.'}
+  {word:'KARAMELLISIEREN',category:'technique',level:'hard',clue:'Zucker durch Erhitzen bräunen und typische Röstaromen entwickeln.'},
+
+  // Fachbegriffe – Meister
+  {word:'MONTERAU BEURRE',category:'technique',level:'master',clue:'Sauce kurz vor dem Servieren mit kalter Butter aufschlagen und binden.'},
+  {word:'CONFIEREN',category:'technique',level:'master',clue:'Lebensmittel langsam bei niedriger Temperatur in Fett oder Sirup garen bzw. konservieren.'},
+  {word:'CLARIFIZIEREN',category:'technique',level:'master',clue:'Eine Flüssigkeit klären und Trübstoffe entfernen.'},
+  {word:'ABSTECHEN',category:'technique',level:'master',clue:'Mit einem Löffel oder Werkzeug gleichmäßig geformte Portionen aus einer Masse entnehmen.'},
+  {word:'DRESSIEREN',category:'technique',level:'master',clue:'Speisen gezielt formen, anrichten oder mit Spritzbeutel auftragen.'},
+  {word:'GLACIEREN',category:'technique',level:'master',clue:'Lebensmittel mit einer glänzenden Glasur oder einem reduzierten Fond überziehen.'},
+  {word:'CHEMISIEREN',category:'technique',level:'master',clue:'Eine Form vor dem Füllen mit Gelee, Farce, Teig oder einer anderen Masse auskleiden.'},
+  {word:'MASQUEREN',category:'technique',level:'master',clue:'Eine Speise vollständig mit Sauce, Creme oder Gelee überziehen.'}
 ];
