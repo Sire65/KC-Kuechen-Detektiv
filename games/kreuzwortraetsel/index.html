@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KC FUTURA – Küchen-Kreuzworträtsel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <div><span class="eyebrow">KC FUTURA · SPIELEWELT</span><h1>Küchen-Kreuzworträtsel</h1></div>
+    <div class="scorecard"><span>Punkte</span><strong id="score">0</strong></div>
+  </header>
+
+  <section id="start" class="panel start">
+    <h2>Rätsel auswählen</h2>
+    <p>Lebensmittel, Küchenutensilien und Fachbegriffe aus der professionellen Küche.</p>
+    <div class="selectors">
+      <label>Schwierigkeit<select id="difficulty"><option value="easy">Leicht</option><option value="medium">Mittel</option><option value="hard">Schwer</option></select></label>
+      <label>Kategorie<select id="category"><option value="all">Gemischt</option><option value="food">Lebensmittel</option><option value="utensil">Utensilien</option><option value="technique">Fachbegriffe</option></select></label>
+    </div>
+    <button id="startBtn">Rätsel starten</button>
+  </section>
+
+  <section id="game" hidden>
+    <div class="toolbar"><span id="progress"></span><span id="difficultyLabel"></span><button id="backBtn" class="secondary">Zur Auswahl</button></div>
+    <section class="panel">
+      <div id="grid" class="grid" aria-label="Kreuzworträtsel"></div>
+    </section>
+    <section class="clues">
+      <div class="panel"><h3>Waagerecht</h3><ol id="across"></ol></div>
+      <div class="panel"><h3>Senkrecht</h3><ol id="down"></ol></div>
+    </section>
+    <section class="controls">
+      <button id="checkBtn">Prüfen</button>
+      <button id="hintBtn" class="secondary">Hinweis −20</button>
+      <button id="solveBtn" class="secondary">Auflösen</button>
+    </section>
+    <section id="feedback" class="panel feedback"></section>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
