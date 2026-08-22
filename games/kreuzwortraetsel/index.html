@@ -51,10 +51,17 @@
       <div class="solution-row"><input id="solutionInput" type="text" autocomplete="off" placeholder="Lösungswort"><button id="solutionBtn">Bonus prüfen</button><button id="skipSolutionBtn" class="secondary">Ohne Bonus abschließen</button></div>
     </section>
     <section id="feedback" class="panel feedback"></section>
+    <section id="resultPanel" class="panel result-panel" hidden>
+      <div class="result-head"><div><span class="eyebrow">SERIE & ERFOLGE</span><h3>Deine Runde</h3></div><div class="streak-box"><span>Serie</span><strong id="streakValue">0</strong><small>Bestserie <b id="bestStreakValue">0</b></small></div></div>
+      <div id="achievementList" class="achievement-list"></div>
+      <p id="achievementEmpty" class="muted">Noch kein Abzeichen freigeschaltet.</p>
+      <div class="result-actions"><button id="newPuzzleBtn">Neues Rätsel</button><button id="choosePuzzleBtn" class="secondary">Andere Auswahl</button></div>
+    </section>
   </section>
 </main>
 <script src="data.js"></script>
 <script src="game.js"></script>
 <script src="navigation.js"></script>
+<script src="motivation.js"></script>
 </body>
 </html>
