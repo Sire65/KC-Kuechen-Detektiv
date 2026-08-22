@@ -1,0 +1,23 @@
+window.KC_CROSSWORD_WORDS = [
+  {word:'TOMATE',category:'food',level:'easy',clue:'Rote Frucht, häufig für Saucen und Salate verwendet.'},
+  {word:'GURKE',category:'food',level:'easy',clue:'Grünes Gemüse, klassisch im Salat.'},
+  {word:'PFEFFER',category:'food',level:'easy',clue:'Gewürz aus gemahlenen Körnern, schwarz oder weiß.'},
+  {word:'KELLE',category:'utensil',level:'easy',clue:'Werkzeug zum Portionieren von Suppen und Saucen.'},
+  {word:'LOEFFEL',category:'utensil',level:'easy',clue:'Besteckteil zum Essen oder Umrühren.'},
+  {word:'MESSER',category:'utensil',level:'easy',clue:'Schneidwerkzeug der Küche.'},
+  {word:'PFANNE',category:'utensil',level:'easy',clue:'Flaches Kochgeschirr zum Braten.'},
+  {word:'SCHNEEBESEN',category:'utensil',level:'medium',clue:'Zum Aufschlagen und Vermengen von Flüssigkeiten.'},
+  {word:'SCHAUMKELLE',category:'utensil',level:'medium',clue:'Gelochtes Werkzeug zum Herausheben aus Flüssigkeiten.'},
+  {word:'PASSIEREN',category:'technique',level:'medium',clue:'Eine Masse durch Sieb oder Tuch streichen.'},
+  {word:'BLANCHIEREN',category:'technique',level:'medium',clue:'Lebensmittel kurz in kochendes Wasser geben und meist abschrecken.'},
+  {word:'NAPPieren'.toUpperCase(),category:'technique',level:'medium',clue:'Ein Gericht dünn und gleichmäßig mit Sauce überziehen.'},
+  {word:'REDUZIEREN',category:'technique',level:'medium',clue:'Flüssigkeit einkochen, um Geschmack und Konsistenz zu konzentrieren.'},
+  {word:'PARIEREN',category:'technique',level:'medium',clue:'Fleisch von Sehnen, Häuten und unerwünschten Teilen befreien.'},
+  {word:'LEGIEREN',category:'technique',level:'hard',clue:'Suppen oder Saucen mit Eigelb und Sahne binden und verfeinern.'},
+  {word:'DEGLACIEREN',category:'technique',level:'hard',clue:'Bratensatz mit Flüssigkeit vom Pfannen- oder Topfboden lösen.'},
+  {word:'POCHIEREN',category:'technique',level:'hard',clue:'Schonendes Garen in heißer, nicht sprudelnd kochender Flüssigkeit.'},
+  {word:'TRANCHIEREN',category:'technique',level:'hard',clue:'Gegartes Fleisch oder Geflügel fachgerecht zerlegen.'},
+  {word:'JULIENNE',category:'technique',level:'hard',clue:'Sehr feine, streichholzartige Gemüsestreifen.'},
+  {word:'BRUNOISE',category:'technique',level:'hard',clue:'Sehr kleine, gleichmäßige Gemüsewürfel.'},
+  {word:'MIREPOIX',category:'technique',level:'hard',clue:'Grob geschnittenes Röstgemüse als Aromabasis.'}
+];
