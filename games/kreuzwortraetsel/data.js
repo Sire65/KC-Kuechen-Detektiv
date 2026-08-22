@@ -1,23 +1,69 @@
 window.KC_CROSSWORD_WORDS = [
+  // Lebensmittel – leicht
   {word:'TOMATE',category:'food',level:'easy',clue:'Rote Frucht, häufig für Saucen und Salate verwendet.'},
   {word:'GURKE',category:'food',level:'easy',clue:'Grünes Gemüse, klassisch im Salat.'},
-  {word:'PFEFFER',category:'food',level:'easy',clue:'Gewürz aus gemahlenen Körnern, schwarz oder weiß.'},
+  {word:'PFEFFER',category:'food',level:'easy',clue:'Gewürz aus schwarzen, weißen oder grünen Körnern.'},
+  {word:'SALZ',category:'food',level:'easy',clue:'Grundgewürz, das fast in keiner Küche fehlt.'},
+  {word:'ZWIEBEL',category:'food',level:'easy',clue:'Aromatisches Lauchgewächs, oft Grundlage für Saucen und Suppen.'},
+  {word:'KAROTTE',category:'food',level:'easy',clue:'Orangefarbenes Wurzelgemüse.'},
+  {word:'BUTTER',category:'food',level:'easy',clue:'Milchfett zum Braten, Backen und Montieren.'},
+  {word:'SAHNE',category:'food',level:'easy',clue:'Milchprodukt zum Verfeinern von Saucen und Desserts.'},
+  {word:'MEHL',category:'food',level:'easy',clue:'Gemahlenes Getreide, wichtig beim Backen und Binden.'},
+  {word:'LACHS',category:'food',level:'easy',clue:'Beliebter rosafarbener Speisefisch.'},
+  {word:'REIS',category:'food',level:'easy',clue:'Kornbeilage, Grundlage unter anderem für Risotto.'},
+  {word:'EI',category:'food',level:'easy',clue:'Zutat zum Binden, Backen, Panieren oder Frühstücken.'},
+
+  // Lebensmittel – mittel/schwer
+  {word:'SELLERIE',category:'food',level:'medium',clue:'Aromatisches Gemüse und klassischer Bestandteil von Suppengrün.'},
+  {word:'KNOBLAUCH',category:'food',level:'medium',clue:'Kräftig aromatische Knolle mit einzelnen Zehen.'},
+  {word:'KARTOFFEL',category:'food',level:'medium',clue:'Stärkehaltige Knolle für Püree, Pommes und viele Beilagen.'},
+  {word:'PETERSILIE',category:'food',level:'medium',clue:'Klassisches grünes Küchenkraut, glatt oder kraus.'},
+  {word:'ROSMARIN',category:'food',level:'medium',clue:'Mediterranes Kraut mit nadelförmigen Blättern.'},
+  {word:'MUSKAT',category:'food',level:'medium',clue:'Gewürz, das besonders gut zu Kartoffelpüree und Spinat passt.'},
+  {word:'SAFRAN',category:'food',level:'hard',clue:'Sehr kostbares Gewürz aus Blütennarben, färbt Speisen gelb.'},
+  {word:'ESTRAGON',category:'food',level:'hard',clue:'Kraut mit anisartigem Aroma, klassisch in der Sauce Béarnaise.'},
+
+  // Utensilien – leicht
   {word:'KELLE',category:'utensil',level:'easy',clue:'Werkzeug zum Portionieren von Suppen und Saucen.'},
-  {word:'LOEFFEL',category:'utensil',level:'easy',clue:'Besteckteil zum Essen oder Umrühren.'},
+  {word:'LOEFFEL',category:'utensil',level:'easy',clue:'Besteckteil zum Essen, Portionieren oder Umrühren.'},
   {word:'MESSER',category:'utensil',level:'easy',clue:'Schneidwerkzeug der Küche.'},
   {word:'PFANNE',category:'utensil',level:'easy',clue:'Flaches Kochgeschirr zum Braten.'},
+  {word:'TOPF',category:'utensil',level:'easy',clue:'Hohes Kochgeschirr für Suppen, Nudeln oder Saucen.'},
+  {word:'SIEB',category:'utensil',level:'easy',clue:'Hilfsmittel zum Abgießen oder Passieren.'},
+  {word:'ZANGE',category:'utensil',level:'easy',clue:'Greifwerkzeug zum Wenden und Portionieren.'},
+  {word:'BRETT',category:'utensil',level:'easy',clue:'Arbeitsunterlage zum Schneiden.'},
+
+  // Utensilien – mittel/schwer
   {word:'SCHNEEBESEN',category:'utensil',level:'medium',clue:'Zum Aufschlagen und Vermengen von Flüssigkeiten.'},
   {word:'SCHAUMKELLE',category:'utensil',level:'medium',clue:'Gelochtes Werkzeug zum Herausheben aus Flüssigkeiten.'},
+  {word:'PFANNENWENDER',category:'utensil',level:'medium',clue:'Flaches Werkzeug zum Wenden von Bratgut.'},
+  {word:'SPARSCHAEELER',category:'utensil',level:'medium',clue:'Werkzeug zum dünnen Abschälen von Gemüse.'},
+  {word:'SPRITZBEUTEL',category:'utensil',level:'medium',clue:'Beutel zum Dressieren von Cremes, Teig oder Püree.'},
+  {word:'CHINOIS',category:'utensil',level:'hard',clue:'Feines, konisches Küchensieb aus Metall.'},
+  {word:'SAUTEUSE',category:'utensil',level:'hard',clue:'Kochgeschirr mit hohem, meist schrägem Rand für Saucen und Schwenkgerichte.'},
+  {word:'MANDOLINE',category:'utensil',level:'hard',clue:'Küchengerät zum sehr gleichmäßigen Hobeln von Gemüse.'},
+
+  // Fachbegriffe – mittel
   {word:'PASSIEREN',category:'technique',level:'medium',clue:'Eine Masse durch Sieb oder Tuch streichen.'},
   {word:'BLANCHIEREN',category:'technique',level:'medium',clue:'Lebensmittel kurz in kochendes Wasser geben und meist abschrecken.'},
-  {word:'NAPPieren'.toUpperCase(),category:'technique',level:'medium',clue:'Ein Gericht dünn und gleichmäßig mit Sauce überziehen.'},
+  {word:'NAPPIEREN',category:'technique',level:'medium',clue:'Ein Gericht dünn und gleichmäßig mit Sauce überziehen.'},
   {word:'REDUZIEREN',category:'technique',level:'medium',clue:'Flüssigkeit einkochen, um Geschmack und Konsistenz zu konzentrieren.'},
   {word:'PARIEREN',category:'technique',level:'medium',clue:'Fleisch von Sehnen, Häuten und unerwünschten Teilen befreien.'},
+  {word:'MARINIEREN',category:'technique',level:'medium',clue:'Lebensmittel für Geschmack und Zartheit in eine Würzflüssigkeit einlegen.'},
+  {word:'PANIEREN',category:'technique',level:'medium',clue:'Lebensmittel vor dem Braten mit einer Hülle, meist aus Mehl, Ei und Bröseln, versehen.'},
+  {word:'GRATINIEREN',category:'technique',level:'medium',clue:'Eine Speise unter starker Oberhitze überbacken und bräunen.'},
+
+  // Fachbegriffe – schwer
   {word:'LEGIEREN',category:'technique',level:'hard',clue:'Suppen oder Saucen mit Eigelb und Sahne binden und verfeinern.'},
   {word:'DEGLACIEREN',category:'technique',level:'hard',clue:'Bratensatz mit Flüssigkeit vom Pfannen- oder Topfboden lösen.'},
   {word:'POCHIEREN',category:'technique',level:'hard',clue:'Schonendes Garen in heißer, nicht sprudelnd kochender Flüssigkeit.'},
   {word:'TRANCHIEREN',category:'technique',level:'hard',clue:'Gegartes Fleisch oder Geflügel fachgerecht zerlegen.'},
   {word:'JULIENNE',category:'technique',level:'hard',clue:'Sehr feine, streichholzartige Gemüsestreifen.'},
   {word:'BRUNOISE',category:'technique',level:'hard',clue:'Sehr kleine, gleichmäßige Gemüsewürfel.'},
-  {word:'MIREPOIX',category:'technique',level:'hard',clue:'Grob geschnittenes Röstgemüse als Aromabasis.'}
+  {word:'MIREPOIX',category:'technique',level:'hard',clue:'Grob geschnittenes Röstgemüse als Aromabasis.'},
+  {word:'MONDIEREN',category:'technique',level:'hard',clue:'Tomaten oder Früchte kurz überbrühen und anschließend häuten.'},
+  {word:'TOURNIEREN',category:'technique',level:'hard',clue:'Gemüse in eine gleichmäßige, dekorative Form schneiden.'},
+  {word:'EMULGIEREN',category:'technique',level:'hard',clue:'Zwei normalerweise nicht mischbare Flüssigkeiten fein miteinander verbinden.'},
+  {word:'FARCIEREN',category:'technique',level:'hard',clue:'Lebensmittel mit einer Farce oder anderen Masse füllen.'},
+  {word:'KARAMELLISIEREN',category:'technique',level:'hard',clue:'Zucker durch Erhitzen bräunen und typische Röstaromen entwickeln.'}
 ];
