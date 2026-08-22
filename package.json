@@ -1,8 +1,8 @@
 {
   "name": "kc-kuechen-detektiv",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
-    "test": "node scripts/validate-scenes.js"
+    "test": "node scripts/validate-scenes.js && node scripts/validate-crossword.js"
   }
 }
