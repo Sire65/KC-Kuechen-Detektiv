@@ -1,20 +1,77 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KC FUTURA – Küchen-Detektiv</title><link rel="stylesheet" href="styles.css"></head>
-<body><main id="game" class="app">
-<header><div><span class="eyebrow">KC FUTURA · SPIELEWELT</span><h1>Küchen-Detektiv</h1></div><div class="scorecard"><span>Punkte</span><strong id="score">0</strong></div></header>
-<section class="meta"><span id="caseNo"></span><span id="difficulty"></span><span id="modeBadge"></span></section>
-<section class="case"><h2 id="caseTitle"></h2><p id="question" class="question"></p>
-  <div id="singleScene" class="sceneWrap"><div class="scene"><img id="sceneImage" src="" alt=""><div id="clueMarker" class="clue" hidden></div></div></div>
-  <div id="diffScene" class="diffWrap" hidden>
-    <div class="diffStatus"><span id="diffCounter">0 / 0 Unterschiede gefunden</span><span id="diffHelp"></span></div>
-    <div class="diffGrid">
-      <div class="scene"><img id="diffLeftImage" src="" alt="Linkes Bild"><div id="diffLeftMarkers" class="marker-layer"></div></div>
-      <div class="scene"><img id="diffRightImage" src="" alt="Rechtes Bild"><div id="diffRightMarkers" class="marker-layer"></div></div>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KC FUTURA – Küchen-Detektiv</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="game" class="app">
+  <section id="startScreen" class="start-screen">
+    <span class="eyebrow">KC FUTURA · SPIELEWELT</span>
+    <h1>Küchen-Detektiv</h1>
+    <p class="intro">Beobachten, kombinieren und Küchenfehler entdecken. Wähle aus, welche Fälle du spielen möchtest.</p>
+    <div class="start-grid">
+      <label>Spielmodus
+        <select id="modeSelect">
+          <option value="all">Alle Spielmodi</option>
+          <option value="thief">Wer war der Dieb?</option>
+          <option value="wrong_place">Was stimmt hier nicht?</option>
+          <option value="missing">Fehlt oder verlegt</option>
+          <option value="liar">Wer lügt?</option>
+          <option value="logic">Logikfall</option>
+          <option value="combo">Kombifall</option>
+          <option value="spot_difference">Finde die Fehler</option>
+        </select>
+      </label>
+      <label>Schwierigkeit
+        <select id="difficultySelect">
+          <option value="all">Alle Stufen</option>
+          <option value="easy">Leicht</option>
+          <option value="medium">Mittel</option>
+          <option value="hard">Schwer</option>
+          <option value="master">Meisterfall</option>
+        </select>
+      </label>
+      <label>Reihenfolge
+        <select id="orderSelect">
+          <option value="normal">Nach Fallnummer</option>
+          <option value="random">Zufällig mischen</option>
+        </select>
+      </label>
     </div>
-  </div>
-</section>
-<section id="answers" class="answers"></section>
-<section class="controls"><button id="hintBtn" class="secondary">Hinweis nutzen</button><button id="nextBtn" hidden>Nächster Fall</button></section>
-<section class="panel"><div id="feedback"></div><div id="hintBox" class="hint"></div><div id="breakdown" class="breakdown"></div></section>
-<footer><b>So werden Punkte berechnet:</b><div id="pointsInfo"></div></footer>
-</main><script src="scenes.js"></script><script src="engine.js"></script></body></html>
+    <div class="saved-stats">
+      <span>Bestwert <strong id="bestScore">0</strong></span>
+      <span>Gespielte Fälle <strong id="playedCount">0</strong></span>
+    </div>
+    <button id="startBtn" class="primary">Spiel starten</button>
+    <p id="startInfo" class="start-info"></p>
+  </section>
+
+  <section id="playScreen" hidden>
+    <header>
+      <div><span class="eyebrow">KC FUTURA · SPIELEWELT</span><h1>Küchen-Detektiv</h1></div>
+      <div class="scorecard"><span>Punkte</span><strong id="score">0</strong></div>
+    </header>
+    <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+    <section class="meta"><span id="caseNo"></span><span id="difficulty"></span><span id="modeBadge"></span></section>
+    <section class="case"><h2 id="caseTitle"></h2><p id="question" class="question"></p>
+      <div id="singleScene" class="sceneWrap"><div class="scene"><img id="sceneImage" src="" alt=""><div class="image-fallback">Szenenbild wird ergänzt</div><div id="clueMarker" class="clue" hidden></div></div></div>
+      <div id="diffScene" class="diffWrap" hidden>
+        <div class="diffStatus"><span id="diffCounter">0 / 0 Unterschiede gefunden</span><span id="diffHelp"></span></div>
+        <div class="diffGrid">
+          <div class="scene"><img id="diffLeftImage" src="" alt="Linkes Bild"><div class="image-fallback">Linkes Szenenbild wird ergänzt</div><div id="diffLeftMarkers" class="marker-layer"></div></div>
+          <div class="scene"><img id="diffRightImage" src="" alt="Rechtes Bild"><div class="image-fallback">Rechtes Szenenbild wird ergänzt</div><div id="diffRightMarkers" class="marker-layer"></div></div>
+        </div>
+      </div>
+    </section>
+    <section id="answers" class="answers"></section>
+    <section class="controls"><button id="menuBtn" class="secondary">Zur Auswahl</button><button id="hintBtn" class="secondary">Hinweis nutzen</button><button id="nextBtn" hidden>Nächster Fall</button></section>
+    <section class="panel"><div id="feedback"></div><div id="hintBox" class="hint"></div><div id="breakdown" class="breakdown"></div></section>
+    <footer><b>So werden Punkte berechnet:</b><div id="pointsInfo"></div></footer>
+  </section>
+</main>
+<script src="scenes.js"></script><script src="engine.js"></script>
+</body>
+</html>
