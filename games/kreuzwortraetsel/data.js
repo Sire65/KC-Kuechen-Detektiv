@@ -40,14 +40,14 @@ window.KC_CROSSWORD_WORDS = [
   {word:'SCHNEEBESEN',category:'utensil',level:'medium',clue:'Zum Aufschlagen und Vermengen von Flüssigkeiten.'},
   {word:'SCHAUMKELLE',category:'utensil',level:'medium',clue:'Gelochtes Werkzeug zum Herausheben aus Flüssigkeiten.'},
   {word:'PFANNENWENDER',category:'utensil',level:'medium',clue:'Flaches Werkzeug zum Wenden von Bratgut.'},
-  {word:'SPARSCHAEELER',category:'utensil',level:'medium',clue:'Werkzeug zum dünnen Abschälen von Gemüse.'},
+  {word:'SPARSCHAELER',category:'utensil',level:'medium',clue:'Werkzeug zum dünnen Abschälen von Gemüse.'},
   {word:'SPRITZBEUTEL',category:'utensil',level:'medium',clue:'Beutel zum Dressieren von Cremes, Teig oder Püree.'},
   {word:'CHINOIS',category:'utensil',level:'hard',clue:'Feines, konisches Küchensieb aus Metall.'},
   {word:'SAUTEUSE',category:'utensil',level:'hard',clue:'Kochgeschirr mit hohem, meist schrägem Rand für Saucen und Schwenkgerichte.'},
   {word:'MANDOLINE',category:'utensil',level:'hard',clue:'Küchengerät zum sehr gleichmäßigen Hobeln von Gemüse.'},
   {word:'ETAMIN',category:'utensil',level:'master',clue:'Sehr feines Passiertuch zum Klären oder Filtern.'},
   {word:'SALAMANDER',category:'utensil',level:'master',clue:'Professionelles Oberhitze-Gerät zum Gratinieren und Überbacken.'},
-  {word:'THERMOMIXER',category:'utensil',level:'master',clue:'Küchengerät, das Mixen, Zerkleinern und kontrolliertes Erhitzen kombiniert.'},
+  {word:'KASSEROLLE',category:'utensil',level:'master',clue:'Kleiner bis mittlerer Stieltopf zum Kochen und Reduzieren von Saucen und Flüssigkeiten.'},
 
   // Fachbegriffe – mittel
   {word:'PASSIEREN',category:'technique',level:'medium',clue:'Eine Masse durch Sieb oder Tuch streichen.'},
@@ -74,12 +74,12 @@ window.KC_CROSSWORD_WORDS = [
   {word:'KARAMELLISIEREN',category:'technique',level:'hard',clue:'Zucker durch Erhitzen bräunen und typische Röstaromen entwickeln.'},
 
   // Fachbegriffe – Meister
-  {word:'MONTERAU BEURRE',category:'technique',level:'master',clue:'Sauce kurz vor dem Servieren mit kalter Butter aufschlagen und binden.'},
+  {word:'MONTER AU BEURRE',category:'technique',level:'master',clue:'Sauce kurz vor dem Servieren mit kalter Butter aufschlagen und binden.'},
   {word:'CONFIEREN',category:'technique',level:'master',clue:'Lebensmittel langsam bei niedriger Temperatur in Fett oder Sirup garen bzw. konservieren.'},
-  {word:'CLARIFIZIEREN',category:'technique',level:'master',clue:'Eine Flüssigkeit klären und Trübstoffe entfernen.'},
+  {word:'KLARIFIZIEREN',category:'technique',level:'master',clue:'Eine Flüssigkeit klären und Trübstoffe entfernen.'},
   {word:'ABSTECHEN',category:'technique',level:'master',clue:'Mit einem Löffel oder Werkzeug gleichmäßig geformte Portionen aus einer Masse entnehmen.'},
   {word:'DRESSIEREN',category:'technique',level:'master',clue:'Speisen gezielt formen, anrichten oder mit Spritzbeutel auftragen.'},
   {word:'GLACIEREN',category:'technique',level:'master',clue:'Lebensmittel mit einer glänzenden Glasur oder einem reduzierten Fond überziehen.'},
   {word:'CHEMISIEREN',category:'technique',level:'master',clue:'Eine Form vor dem Füllen mit Gelee, Farce, Teig oder einer anderen Masse auskleiden.'},
-  {word:'MASQUEREN',category:'technique',level:'master',clue:'Eine Speise vollständig mit Sauce, Creme oder Gelee überziehen.'}
+  {word:'MASKIEREN',category:'technique',level:'master',clue:'Eine Speise vollständig mit Sauce, Creme oder Gelee überziehen.'}
 ];
