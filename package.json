@@ -1,8 +1,12 @@
 {
   "name": "kc-kuechen-detektiv",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
-    "test": "node scripts/validate-scenes.js && node scripts/validate-crossword.js"
+    "test:syntax": "node --check games/kreuzwortraetsel/data.js && node --check games/kreuzwortraetsel/game.js && node --check games/kreuzwortraetsel/navigation.js && node --check games/kreuzwortraetsel/motivation.js && node --check games/kreuzwortraetsel/daily.js",
+    "test:scenes": "node scripts/validate-scenes.js",
+    "test:crossword": "node scripts/validate-crossword.js",
+    "test:architecture": "node scripts/validate-crossword-architecture.js",
+    "test": "npm run test:syntax && npm run test:scenes && npm run test:crossword && npm run test:architecture"
   }
 }
