@@ -1,7 +1,7 @@
 {
   "id": "kc-kitchen-detective",
   "name": "KC FUTURA – Küchen-Detektiv",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "entry": "index.html",
   "sceneCatalog": "scenes.js",
   "sceneCount": 23,
@@ -13,7 +13,11 @@
     "saved-best-score",
     "played-case-statistics",
     "progress-indicator",
-    "missing-image-fallback"
+    "missing-image-fallback",
+    "approved-asset-gate",
+    "automatic-scene-qa",
+    "spot-difference-6-8-10",
+    "futura-result-contract"
   ],
   "modes": ["thief", "wrong_place", "missing", "liar", "logic", "combo", "spot_difference"],
   "difficulties": {
@@ -36,9 +40,15 @@
     "differenceCompletionBonus": {"6":35,"8":50,"10":70}
   },
   "assetStyle": "near-photorealistic-professional-kitchen",
+  "assetApprovalManifest": "image-approvals.js",
+  "qa": {
+    "command": "npm test",
+    "workflow": ".github/workflows/validate-game.yml"
+  },
   "futuraMigration": {
     "standaloneRepository": true,
     "safeToEmbedByIframe": true,
-    "futureScoreAdapter": "window.KCFuturaGameBridge"
+    "resultContract": "FUTURA_RESULT_CONTRACT.md",
+    "scoreAdapter": "window.KCFuturaGameBridge"
   }
 }
