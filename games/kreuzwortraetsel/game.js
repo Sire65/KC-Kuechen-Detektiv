@@ -25,10 +25,16 @@
   function norm(s){return String(s||'').toUpperCase().replace(/Ä/g,'AE').replace(/Ö/g,'OE').replace(/Ü/g,'UE').replace(/ß/g,'SS').replace(/[^A-Z]/g,'');}
   function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
   function rankLevel(level){return {easy:1,medium:2,hard:3,master:4}[level]||1;}
-  function candidates(){const level=$('#difficulty').value,cat=$('#category').value,rank=rankLevel(level);return shuffle(WORDS.filter(w=>(cat==='all'||w.category===cat)&&rankLevel(w.level)<=rank));}
+  function candidates(){
+    const level=$('#difficulty').value,cat=$('#category').value,maxRank=rankLevel(level);
+    const eligible=WORDS.filter(w=>(cat==='all'||w.category===cat)&&rankLevel(w.level)<=maxRank);
+    const ordered=[];
+    for(let r=maxRank;r>=1;r--){ordered.push(...shuffle(eligible.filter(w=>rankLevel(w.level)===r)));}
+    return ordered;
+  }
   function key(x,y){return x+','+y;}
 
-  function placeWords(words,target){
+  function placeWords(words,target,selectedLevel){
     const placed=[],occupied=new Map(),usedDirs=new Map();
     const cellLetter=(x,y)=>occupied.get(key(x,y));
     const dirsAt=(x,y)=>usedDirs.get(key(x,y))||new Set();
@@ -51,7 +57,8 @@
     }
     function put(item,x,y,dir){const word=norm(item.word);for(let i=0;i<word.length;i++)reserve(x+(dir==='across'?i:0),y+(dir==='down'?i:0),word[i],dir);placed.push({item,word,x,y,dir});}
     if(!words.length)return [];
-    const first=[...words].sort((a,b)=>norm(b.word).length-norm(a.word).length)[0];put(first,0,0,'across');
+    const wantedRank=rankLevel(selectedLevel);
+    const first=[...words].sort((a,b)=>rankLevel(b.level)-rankLevel(a.level)||norm(b.word).length-norm(a.word).length)[0];put(first,0,0,'across');
     const remaining=words.filter(w=>w!==first);
     while(remaining.length&&placed.length<target){
       let best=null;
@@ -62,7 +69,9 @@
           const dir=p.dir==='across'?'down':'across';
           const x=p.x+(p.dir==='across'?j:0)-(dir==='across'?i:0),y=p.y+(p.dir==='down'?j:0)-(dir==='down'?i:0);
           const crosses=canPlace(word,x,y,dir,true);if(crosses===null)continue;
-          const spread=Math.abs(x)+Math.abs(y),score=crosses*100-spread;
+          const spread=Math.abs(x)+Math.abs(y);
+          const difficultyBonus=rankLevel(item.level)*18+(rankLevel(item.level)===wantedRank?35:0);
+          const score=crosses*100+difficultyBonus-spread;
           if(!best||score>best.score)best={wi,item,x,y,dir,score};
         }
       }
@@ -75,19 +84,21 @@
   function targetCount(){const level=LEVELS[$('#difficulty').value],variant=VARIANTS[$('#variant').value]||VARIANTS.classic;return Math.max(5,Math.round(level.count*variant.factor));}
 
   function build(){
-    const level=$('#difficulty').value,cfg=LEVELS[level],target=targetCount();
-    let pool=candidates();
-    if(pool.length<target)pool=shuffle(WORDS.filter(w=>rankLevel(w.level)<=rankLevel(level)));
-    state.entries=placeWords(pool.slice(0,Math.max(target*4,28)),target);
+    const level=$('#difficulty').value,cfg=LEVELS[level],requestedTarget=targetCount();
+    const pool=candidates();
+    const target=Math.min(requestedTarget,pool.length);
+    state.entries=placeWords(pool.slice(0,Math.max(target*4,28)),target,level);
     state.cells.clear();state.score=0;state.hints=0;state.checks=0;state.startedAt=Date.now();state.finished=false;state.gridSolved=false;state.solutionAttempts=0;state.solutionBonus=0;state.solution=shuffle(SOLUTIONS)[0];
     saved.played=(saved.played||0)+1;saveStats();
-    renderGrid();renderClues();$('#score').textContent='0';$('#feedback').textContent='Fülle die Begriffe aus. Richtige Kreuzungen helfen dir bei mehreren Wörtern gleichzeitig.';
+    renderGrid();renderClues();$('#score').textContent='0';
+    const shortfall=state.entries.length<requestedTarget?` Für diese Kategorie wurden ${state.entries.length} sinnvoll gekreuzte Begriffe gefunden.`:'';
+    $('#feedback').textContent='Fülle die Begriffe aus. Richtige Kreuzungen helfen dir bei mehreren Wörtern gleichzeitig.'+shortfall;
     $('#difficultyLabel').textContent=`${cfg.label} · ${(VARIANTS[$('#variant').value]||VARIANTS.classic).label}`;$('#solutionPanel').hidden=true;$('#solutionInput').value='';$('#start').hidden=true;$('#game').hidden=false;updateStats();
   }
 
   function renderGrid(){
     const grid=$('#grid');grid.innerHTML='';
-    if(state.entries.length<4){grid.innerHTML='<p>Für diese Auswahl konnten nicht genug sinnvoll gekreuzte Begriffe erzeugt werden. Starte bitte eine neue Runde.</p>';return;}
+    if(state.entries.length<4){grid.innerHTML='<p>Für diese Auswahl konnten nicht genug sinnvoll gekreuzte Begriffe erzeugt werden. Wähle Gemischt oder eine andere Kombination.</p>';return;}
     let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
     state.entries.forEach(e=>{minX=Math.min(minX,e.x);minY=Math.min(minY,e.y);maxX=Math.max(maxX,e.x+(e.dir==='across'?e.word.length-1:0));maxY=Math.max(maxY,e.y+(e.dir==='down'?e.word.length-1:0));});
     const width=maxX-minX+1,height=maxY-minY+1;grid.style.gridTemplateColumns=`repeat(${width},minmax(28px,44px))`;
@@ -137,7 +148,7 @@
   }
 
   function submitResult(level,seconds){
-    const payload={gameId:'kitchen-crossword',gameVersion:'1.1.0',score:state.score,difficulty:level,variant:$('#variant').value,category:$('#category').value,completed:true,terms:state.entries.length,hints:state.hints,checks:state.checks,solutionBonus:state.solutionBonus,durationSeconds:Math.round(seconds),completedAt:new Date().toISOString()};
+    const payload={gameId:'kitchen-crossword',gameVersion:'1.1.1',score:state.score,difficulty:level,variant:$('#variant').value,category:$('#category').value,completed:true,terms:state.entries.length,hints:state.hints,checks:state.checks,solutionBonus:state.solutionBonus,durationSeconds:Math.round(seconds),completedAt:new Date().toISOString()};
     try{const bridge=window.KCFuturaGameBridge||(window.parent&&window.parent.KCFuturaGameBridge);if(bridge&&typeof bridge.submitResult==='function')bridge.submitResult(payload);if(window.parent&&window.parent!==window)window.parent.postMessage({type:'KC_FUTURA_GAME_RESULT',payload},'*');}catch(e){}
   }
   function back(){if(state.finished||confirm('Aktuelles Rätsel verlassen?')){$('#game').hidden=true;$('#start').hidden=false;updateStats();}}
