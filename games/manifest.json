@@ -1,12 +1,12 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "platform": "KC FUTURA Spielewelt",
   "bridge": "window.KCFuturaGameBridge",
   "games": [
     {
       "id": "kitchen-detective",
       "name": "Küchen-Detektiv",
-      "entry": "../../index.html",
+      "entry": "../index.html",
       "category": "Beobachtung & Logik",
       "scoreCompatible": true
     },
