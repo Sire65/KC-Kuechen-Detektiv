@@ -2,8 +2,17 @@
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KC FUTURA – Küchen-Detektiv</title><link rel="stylesheet" href="styles.css"></head>
 <body><main id="game" class="app">
 <header><div><span class="eyebrow">KC FUTURA · SPIELEWELT</span><h1>Küchen-Detektiv</h1></div><div class="scorecard"><span>Punkte</span><strong id="score">0</strong></div></header>
-<section class="meta"><span id="caseNo"></span><span id="difficulty"></span></section>
-<section class="case"><h2 id="caseTitle"></h2><p id="question" class="question"></p><div class="scene"><img id="sceneImage" src="" alt=""><div id="clueMarker" class="clue" hidden></div></div></section>
+<section class="meta"><span id="caseNo"></span><span id="difficulty"></span><span id="modeBadge"></span></section>
+<section class="case"><h2 id="caseTitle"></h2><p id="question" class="question"></p>
+  <div id="singleScene" class="sceneWrap"><div class="scene"><img id="sceneImage" src="" alt=""><div id="clueMarker" class="clue" hidden></div></div></div>
+  <div id="diffScene" class="diffWrap" hidden>
+    <div class="diffStatus"><span id="diffCounter">0 / 0 Unterschiede gefunden</span><span id="diffHelp"></span></div>
+    <div class="diffGrid">
+      <div class="scene"><img id="diffLeftImage" src="" alt="Linkes Bild"><div id="diffLeftMarkers" class="marker-layer"></div></div>
+      <div class="scene"><img id="diffRightImage" src="" alt="Rechtes Bild"><div id="diffRightMarkers" class="marker-layer"></div></div>
+    </div>
+  </div>
+</section>
 <section id="answers" class="answers"></section>
 <section class="controls"><button id="hintBtn" class="secondary">Hinweis nutzen</button><button id="nextBtn" hidden>Nächster Fall</button></section>
 <section class="panel"><div id="feedback"></div><div id="hintBox" class="hint"></div><div id="breakdown" class="breakdown"></div></section>
