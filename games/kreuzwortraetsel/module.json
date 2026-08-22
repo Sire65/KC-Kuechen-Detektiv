@@ -1,24 +1,33 @@
 {
   "id": "kitchen-crossword",
   "name": "KC FUTURA – Küchen-Kreuzworträtsel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "entry": "games/kreuzwortraetsel/index.html",
   "expandable": true,
   "categories": ["food", "utensil", "technique", "all"],
-  "difficulties": ["easy", "medium", "hard"],
+  "difficulties": ["easy", "medium", "hard", "master"],
+  "variants": ["quick", "classic", "large"],
   "features": [
     "generated-crossword-grid",
     "crossing-preference",
     "difficulty-selection",
     "category-selection",
+    "variant-selection",
+    "master-mode",
     "transparent-scoring",
     "letter-hints",
+    "solution-word-bonus",
     "solution-mode",
     "best-score",
     "solved-count",
     "responsive-layout",
     "futura-result-bridge"
   ],
+  "scoring": {
+    "letterHintPenalty": 20,
+    "extraCheckPenalty": 10,
+    "solutionWordMaxBonus": 100
+  },
   "futuraMigration": {
     "safeToEmbedByIframe": true,
     "scoreAdapter": "window.KCFuturaGameBridge",
